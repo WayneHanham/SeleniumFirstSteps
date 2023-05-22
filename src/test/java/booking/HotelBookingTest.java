@@ -1,5 +1,6 @@
 package booking;
 
+import helpers.EmailHelper;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -57,10 +58,13 @@ public class HotelBookingTest {
 
         // now populate new customer registration form
         WebElement email = driver.findElement(By.id("email"));
-        email.sendKeys("michal123456@gmail.com");
+        // instead of this
+        // email.sendKeys("michal1234567@gmail.com");
+
+        email.sendKeys(EmailHelper.generateRandomEmail());
 
         WebElement password = driver.findElement(By.id("passwd"));
-        password.sendKeys("michal123456@gmail.com");
+        password.sendKeys("michal1234567@gmail.com");
 
         WebElement firstName = driver.findElement(By.id("customer_firstname"));
         firstName.sendKeys("Michal");
@@ -100,12 +104,5 @@ public class HotelBookingTest {
         WebElement orderSuccessAlert = driver.findElement(By.cssSelector("p.alert-success"));
 
         assertEquals(orderSuccessAlert.getText(), "Your order on MyBooking is complete.");
-
-
-
-
-
-
-
     }
 }
